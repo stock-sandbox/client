@@ -1,0 +1,7 @@
+---
+alwaysApply: true
+---
+
+- 서버 데이터는 반드시 React Query의 useQuery, useMutation 훅으로 관리한다.
+- 쿼리 키는 명확하고 일관성 있게 작성한다.
+- 캐싱, 리페치, 에러 핸들링 옵션을 반드시 명시한다.
