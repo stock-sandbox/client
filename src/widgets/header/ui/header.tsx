@@ -7,7 +7,6 @@ import {
   Heading,
   Button,
   Stack,
-  useDisclosure,
   useBreakpointValue,
   HStack,
   Drawer,
@@ -19,6 +18,7 @@ import { IoIosMenu } from 'react-icons/io';
 import { userOptions } from '@/entities/user';
 import { useQuery } from '@tanstack/react-query';
 import { Profile } from '@/widgets/user';
+import { useLogout } from '@/features/logout';
 
 /**
  * 모의투자 사이트 헤더 위젯
@@ -27,8 +27,8 @@ import { Profile } from '@/widgets/user';
 export const Header = () => {
   const router = useRouter();
   const { data: user } = useQuery(userOptions());
-  // const { isOpen, onOpen, onClose } = useDisclosure();
   const isMobile = useBreakpointValue({ base: true, md: false });
+  const { logout } = useLogout();
 
   console.log(user);
   return (
@@ -74,6 +74,19 @@ export const Header = () => {
                             {item.label}
                           </Button>
                         ))}
+                        {user ? (
+                          <Button variant="ghost" size="sm" onClick={logout}>
+                            로그아웃
+                          </Button>
+                        ) : (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => router.push('/login')}
+                          >
+                            로그인
+                          </Button>
+                        )}
                       </Flex>
                     </Drawer.Body>
                     <Drawer.CloseTrigger asChild>

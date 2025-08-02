@@ -1,8 +1,12 @@
 import JsCookie from '@/shared/utils/cookies';
 
 export const useLogout = () => {
-  JsCookie.remove('accessToken');
-  JsCookie.remove('refreshToken');
+  const logout = () => {
+    JsCookie.remove('accessToken');
+    JsCookie.remove('refreshToken');
 
-  window.location.href = '/';
+    window.location.href = '/';
+  };
+
+  return { logout };
 };

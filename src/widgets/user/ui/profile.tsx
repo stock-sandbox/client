@@ -7,9 +7,10 @@ import { useLogout } from '@/features/logout';
 
 export const Profile = () => {
   const { data: user } = useQuery(userOptions());
+  const { logout } = useLogout();
 
   const handleLogout = () => {
-    useLogout();
+    logout();
   };
 
   return (

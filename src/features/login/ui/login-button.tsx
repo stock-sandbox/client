@@ -23,12 +23,12 @@ export function LoginButton() {
       _hover={{ bg: '#FDD835' }}
       _active={{ bg: '#FBC02D' }}
       onClick={handleKakaoLogin}
-      isLoading={isLoading}
       loadingText="로그인 중..."
       w="full"
       py={6}
-      leftIcon={<Icon as={RiKakaoTalkFill} />}
+      loading={isLoading}
     >
+      <Icon as={RiKakaoTalkFill} mr={2} />
       카카오로 시작하기
     </Button>
   );
