@@ -5,7 +5,7 @@ import { userOptions } from '@/entities/user';
 import { Avatar, Button, Menu, Portal } from '@chakra-ui/react';
 import { useLogout } from '@/features/logout';
 
-export default function Profile() {
+export const Profile = () => {
   const { data: user } = useQuery(userOptions());
 
   const handleLogout = () => {
@@ -36,4 +36,4 @@ export default function Profile() {
       </Portal>
     </Menu.Root>
   );
-}
+};
