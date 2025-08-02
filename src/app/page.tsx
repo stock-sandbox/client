@@ -6,7 +6,7 @@ import { PopularStocks } from '@/widgets/popular-stocks';
 import { Features } from '@/widgets/features';
 import { Cta } from '@/widgets/cta';
 import { getVolumeRankStocks } from '@/entities/stock';
-import { VolumeRankStock } from '@/shared/types/stock.types';
+import { VolumeRankStock } from '@/entities/stock/model/stock.types';
 
 /**
  * 모의투자 사이트 메인 페이지

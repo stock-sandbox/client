@@ -16,6 +16,9 @@ import {
 } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { IoIosMenu } from 'react-icons/io';
+import { userOptions } from '@/entities/user';
+import { useQuery } from '@tanstack/react-query';
+import { Profile } from '@/widgets/user';
 
 /**
  * 모의투자 사이트 헤더 위젯
@@ -23,11 +26,11 @@ import { IoIosMenu } from 'react-icons/io';
  */
 export const Header = () => {
   const router = useRouter();
-
+  const { data: user } = useQuery(userOptions());
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const isMobile = useBreakpointValue({ base: true, md: false });
 
-  console.log(isMobile);
+  console.log(user);
   return (
     <Box
       bg="white"
@@ -89,13 +92,25 @@ export const Header = () => {
                 {NAV_ITEMS.map((item) => (
                   <Button
                     key={item.href}
-                    variant={item.variant || 'ghost'}
+                    variant="ghost"
                     size="sm"
                     onClick={() => router.push(item.href)}
                   >
                     {item.label}
                   </Button>
                 ))}
+
+                {user ? (
+                  <Profile />
+                ) : (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => router.push('/login')}
+                  >
+                    로그인
+                  </Button>
+                )}
               </Stack>
             </>
           )}
@@ -108,7 +123,6 @@ export const Header = () => {
 type NavItem = {
   label: string;
   href: string;
-  variant?: 'outline' | 'solid' | 'ghost' | 'subtle' | 'surface' | 'plain';
 };
 
 const NAV_ITEMS: NavItem[] = [
@@ -131,10 +145,5 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: '커뮤니티',
     href: '/community',
-  },
-  {
-    label: '로그인',
-    href: '/login',
-    variant: 'outline',
   },
 ];

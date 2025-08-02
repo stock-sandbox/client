@@ -1,5 +1,5 @@
 import { api } from '@/shared/api';
-import { VolumeRankResponse } from '@/shared/types/stock.types';
+import { VolumeRankResponse } from '@/entities/stock/model/stock.types';
 
 /**
  * 거래량 순위 조회 API

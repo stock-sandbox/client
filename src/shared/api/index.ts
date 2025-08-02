@@ -1,5 +1,5 @@
 import ky from 'ky';
-import { getToken } from '../utils/getToken';
+import { getToken } from '../utils/get-token';
 
 export const api = ky.extend({
   prefixUrl: `${process.env.NEXT_PUBLIC_API_URL}`,

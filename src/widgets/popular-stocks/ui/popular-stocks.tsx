@@ -10,7 +10,7 @@ import {
   Stack,
   Separator,
 } from '@chakra-ui/react';
-import { VolumeRankStock } from '@/shared/types/stock.types';
+import { VolumeRankStock } from '@/entities/stock/model/stock.types';
 import {
   formatPrice,
   formatPriceChange,

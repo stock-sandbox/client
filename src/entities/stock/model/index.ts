@@ -1,4 +1,4 @@
-import { MarketIndex, PopularStock } from '@/shared/types/stock.types';
+import { MarketIndex, PopularStock } from '@/entities/stock/model/stock.types';
 
 /**
  * 주요 지수 mock 데이터
