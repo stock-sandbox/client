@@ -1,7 +1,21 @@
 'use client';
 
-import { Box, Container, Flex, Heading, Button, Stack } from '@chakra-ui/react';
+import {
+  Box,
+  Container,
+  Flex,
+  Heading,
+  Button,
+  Stack,
+  useDisclosure,
+  useBreakpointValue,
+  HStack,
+  Drawer,
+  Portal,
+  CloseButton,
+} from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
+import { IoIosMenu } from 'react-icons/io';
 
 /**
  * 모의투자 사이트 헤더 위젯
@@ -9,6 +23,11 @@ import { useRouter } from 'next/navigation';
  */
 export const Header = () => {
   const router = useRouter();
+
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
+  console.log(isMobile);
   return (
     <Box
       bg="white"
@@ -18,57 +37,104 @@ export const Header = () => {
       _dark={{ bg: 'gray.800' }}
     >
       <Container maxW="1200px" py={4}>
-        <Flex justify="space-between" align="center">
-          <Heading size="lg" color="blue.500" _dark={{ color: 'blue.300' }}>
-            📈 모의투자 아카데미
-          </Heading>
-          <Stack direction="row" gap={4}>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => router.push('/domestic')}
-            >
-              국내
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => router.push('/overseas')}
-            >
-              해외
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => router.push('/portfolio')}
-            >
-              포트폴리오
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => router.push('/ranking')}
-            >
-              랭킹
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => router.push('/community')}
-            >
-              커뮤니티
-            </Button>
-            <Button
-              variant="outline"
-              colorScheme="blue"
-              size="sm"
-              onClick={() => router.push('/login')}
-            >
-              로그인
-            </Button>
-          </Stack>
-        </Flex>
+        <HStack justify="space-between">
+          {isMobile ? (
+            <Drawer.Root placement="start" size="full">
+              <Drawer.Trigger asChild>
+                <Button unstyled cursor="pointer">
+                  <IoIosMenu size={24} />
+                </Button>
+              </Drawer.Trigger>
+              <Portal>
+                <Drawer.Backdrop />
+                <Drawer.Positioner>
+                  <Drawer.Content>
+                    <Drawer.Header>
+                      {/* <Drawer.Title>Drawer Title</Drawer.Title> */}
+                      <Heading
+                        size="lg"
+                        color="blue.500"
+                        _dark={{ color: 'blue.300' }}
+                      >
+                        📈 모의투자 아카데미
+                      </Heading>
+                    </Drawer.Header>
+                    <Drawer.Body>
+                      <Flex flexDirection="column" alignItems="start" gap={2}>
+                        {NAV_ITEMS.map((item) => (
+                          <Button
+                            key={item.href}
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => router.push(item.href)}
+                          >
+                            {item.label}
+                          </Button>
+                        ))}
+                      </Flex>
+                    </Drawer.Body>
+                    <Drawer.CloseTrigger asChild>
+                      <CloseButton size="sm" />
+                    </Drawer.CloseTrigger>
+                  </Drawer.Content>
+                </Drawer.Positioner>
+              </Portal>
+            </Drawer.Root>
+          ) : (
+            <>
+              <Heading size="lg" color="blue.500" _dark={{ color: 'blue.300' }}>
+                📈 모의투자 아카데미
+              </Heading>
+              <Stack direction="row" gap={4}>
+                {NAV_ITEMS.map((item) => (
+                  <Button
+                    key={item.href}
+                    variant={item.variant || 'ghost'}
+                    size="sm"
+                    onClick={() => router.push(item.href)}
+                  >
+                    {item.label}
+                  </Button>
+                ))}
+              </Stack>
+            </>
+          )}
+        </HStack>
       </Container>
     </Box>
   );
 };
+
+type NavItem = {
+  label: string;
+  href: string;
+  variant?: 'outline' | 'solid' | 'ghost' | 'subtle' | 'surface' | 'plain';
+};
+
+const NAV_ITEMS: NavItem[] = [
+  {
+    label: '국내',
+    href: '/domestic',
+  },
+  {
+    label: '해외',
+    href: '/overseas',
+  },
+  {
+    label: '포트폴리오',
+    href: '/portfolio',
+  },
+  {
+    label: '랭킹',
+    href: '/ranking',
+  },
+  {
+    label: '커뮤니티',
+    href: '/community',
+  },
+  {
+    label: '로그인',
+    href: '/login',
+    variant: 'outline',
+  },
+];
