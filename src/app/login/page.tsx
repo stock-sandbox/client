@@ -10,28 +10,17 @@ import {
   Icon,
 } from '@chakra-ui/react';
 import { RiKakaoTalkFill } from 'react-icons/ri';
-import { useState } from 'react';
-import { api } from '@/shared/api';
+import { useLogin } from '@/features/login';
 
 /**
  * 로그인 페이지
  * 카카오 로그인만 지원합니다.
  */
 export default function LoginPage() {
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, login } = useLogin();
 
   const handleKakaoLogin = async () => {
-    try {
-      setIsLoading(true);
-      const data: { url: string } = await api.get('auth/kakao').json();
-      const { url } = data;
-      setIsLoading(false);
-      window.location.href = url;
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
+    login();
   };
 
   return (
