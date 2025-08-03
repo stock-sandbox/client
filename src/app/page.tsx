@@ -7,7 +7,7 @@ import { Features } from '@/widgets/features';
 import { Cta } from '@/widgets/cta';
 import { getVolumeRankStocks } from '@/entities/stock';
 import { VolumeRankStock } from '@/entities/stock/model/stock.types';
-
+import { MyPortfolio } from '@/widgets/portfolio';
 /**
  * 모의투자 사이트 메인 페이지
  * FSD 아키텍쳐를 따라 위젯들로 구성되어 있습니다.
@@ -40,7 +40,8 @@ export default async function HomePage() {
 
           {/* 인기 종목 랭킹 */}
           <GridItem>
-            <PopularStocks stocks={volumeRankStocks} />
+            {/* <PopularStocks stocks={volumeRankStocks} /> */}
+            <MyPortfolio />
           </GridItem>
         </Grid>
 
