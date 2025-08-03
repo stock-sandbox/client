@@ -9,5 +9,6 @@ export const userOptions = () => {
     queryKey: ['user', 'me'], // key를 좀 더 명확하게
     queryFn: getUser,
     enabled: !!accessToken,
+    // retry: 1,
   });
 };

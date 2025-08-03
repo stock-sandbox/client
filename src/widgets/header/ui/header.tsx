@@ -30,7 +30,7 @@ export const Header = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
   const { logout } = useLogout();
 
-  console.log(user);
+  console.log(user, 'user');
   return (
     <Box
       bg="white"
