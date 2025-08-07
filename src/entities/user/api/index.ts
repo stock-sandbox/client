@@ -1,8 +1,7 @@
-import { clientApi } from '@/shared/api/clientApi';
 import { UserResponse } from '../model/user.types';
+import { api } from '@/shared/api';
 
 export const getUser = async () => {
-  const response = await clientApi.get('auth/me');
-  const data = (await response.json()) as UserResponse;
-  return data.user;
+  const { user }: { user: UserResponse } = await api('auth/me');
+  return user;
 };

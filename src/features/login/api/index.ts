@@ -1,8 +1,7 @@
-import { clientApi } from '@/shared/api/clientApi';
+import { api } from '@/shared/api';
 
 export const login = async () => {
-  const data: { url: string } = await clientApi.get('auth/kakao').json();
-  const { url } = data;
+  const { url }: { url: string } = await api('auth/kakao');
 
   return url;
 };
