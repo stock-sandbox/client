@@ -10,12 +10,7 @@ import { FaTrophy } from 'react-icons/fa';
 export const Cta = () => {
   return (
     <Box mt={16} textAlign="center">
-      <Box
-        bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-        borderRadius="xl"
-        p={12}
-        color="white"
-      >
+      <Box bg="primary" borderRadius="xl" p={12} color="white">
         <Stack gap={6} align="center">
           <Heading size="lg">지금 바로 시작해보세요!</Heading>
           <Text fontSize="lg" opacity={0.9}>

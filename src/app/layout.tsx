@@ -1,5 +1,5 @@
-import { ChakraProvider } from '@/shared/providers/chakra-provider';
-import QueryProvider from '@/shared/providers/query-provider';
+import { ChakraProvider } from '@/app/_providers/chakra-provider';
+import QueryProvider from '@/app/_providers/query-provider';
 
 export default async function RootLayout({
   children,

@@ -17,11 +17,7 @@ import { FaRocket, FaGraduationCap } from 'react-icons/fa';
  */
 export const Hero = () => {
   return (
-    <Box
-      bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-      color="white"
-      py={20}
-    >
+    <Box bg="primary" color="white" py={20}>
       <Container maxW="1200px" textAlign="center">
         <Stack gap={6} align="center">
           <Heading size="2xl" fontWeight="bold">
