@@ -78,7 +78,7 @@ FSD는 두 가지 핵심 원칙을 기반으로 합니다.
 // entities/post/index.ts - Public API 예시
 
 // UI 컴포넌트 공개
-export { PostCard } from './ui/PostCard';
+export { PostCard } from './ui/post-card';
 
 // 쿼리 훅 공개
 export { usePost } from './model/hooks';
@@ -109,10 +109,6 @@ import { PostCard, usePost, type Post } from '@/entities/post';
     - ex) useMutation
   - **특정 위젯**만을 위한 복합 데이터 조회 로직은 \*\*`widgets`\*\*에 둘 수 있습니다.
     - useQuery는 사용가능하나, useMutation(기능에 관한) 로직은 `features` 레이어에 있어야 한다.
-
-- **타입(Type) 정의는 어디에 두나요?**
-
-  - 데이터 모델의 타입은 해당 데이터의 설계도이므로, \*\*`entities/{sliceName}/model/user.types.ts`\*\*에 위치하는 것이 표준입니다.
 
 - **정렬처럼 UI 상태만 바꾸는 로직은요?**
 
